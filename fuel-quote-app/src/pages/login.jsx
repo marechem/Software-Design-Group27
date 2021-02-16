@@ -1,14 +1,14 @@
 import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Form, Button, Card, Container } from "react-bootstrap";
+import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
 
 const LoginPage = () => {
   return (
-    <Container>
+    <Container className="mt-5 pt-5">
       <Card>
         <Card.Body>
-          <div className="container">
+          <div className="m-4">
             <Form>
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
@@ -30,6 +30,7 @@ const LoginPage = () => {
         </Card.Body>
       </Card>
     </Container>
+    
   );
 };
 

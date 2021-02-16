@@ -22,6 +22,7 @@ class App extends Component {
           <Route path="/newForm" component={NewFuelQuote} />
         </Switch>
       </Router>
+      
     );
   }
 }
