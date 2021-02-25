@@ -12,7 +12,7 @@ const LoginPage = () => {
             <Form>
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Username" />
+                <Form.Control type="text" placeholder="Username" required/>
                 <Form.Text className="text-muted">
                   Please enter your unique username.
                 </Form.Text>
@@ -20,13 +20,20 @@ const LoginPage = () => {
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password" required/>
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </div>
             </Form>
+            <div>
+              <span><a href="/register">Register Account</a></span>
+            </div>
+            
           </div>
+          
         </Card.Body>
       </Card>
     </Container>

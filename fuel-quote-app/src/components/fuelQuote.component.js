@@ -12,7 +12,7 @@ export default class NewFuelQuote extends Component {
                             <Form.Row>
                             <Col xs={7}>
                                 <Form.Label>Enter the amount of Gallons needed.</Form.Label>
-                                <Form.Control type="text" placeholder="Gallons requested" />
+                                <Form.Control type="number" placeholder="Gallons requested" required/>
                             </Col>
                             <Col>
                                 <Form.Label>Delivery Date</Form.Label>

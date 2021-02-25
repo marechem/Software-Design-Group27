@@ -10,7 +10,7 @@ export default class TopNavbar extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/">Login</Nav.Link>
                     <Nav.Link href="/register">Register</Nav.Link>
                     <NavDropdown title="Fuel Quote" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/newForm">Start a New Form</NavDropdown.Item>
