@@ -8,6 +8,7 @@ Switch } from "react-router-dom";
 //Pages
 import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
+import ProfilePage from "./pages/profile";
 
 //Components
 import TopNavbar from "./components/navbar.component";
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/" component={LoginPage} />
           <Route path="/newForm" component={NewFuelQuote} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/profile" component={ProfilePage} />
         </Switch>
       </Router>
       
