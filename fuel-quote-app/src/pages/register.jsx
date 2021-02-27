@@ -12,16 +12,16 @@ const RegisterPage = () => {
                       <Form>
                           <Form.Group controlId="formGroupUsername">
                               <Form.Label>Create New Username</Form.Label>
-                              <Form.Control type="username" placeholder="Enter username" />
+                              <Form.Control type="username" placeholder="Enter username" required/>
                             </Form.Group>
                           <Form.Group controlId="formGroupPassword">
                              <Form.Label>Create New Password</Form.Label>
-                             <Form.Control type="password" placeholder="Enter Password" />
+                             <Form.Control type="password" placeholder="Enter Password" required/>
                            </Form.Group>
+                           <Button variant="primary" type="submit">
+                             Submit
+                           </Button>
                        </Form>
-                       <Button variant="primary" type="submit">
-                          Submit
-                       </Button>
                    </div>
                </Card.Body>
            </Card>
