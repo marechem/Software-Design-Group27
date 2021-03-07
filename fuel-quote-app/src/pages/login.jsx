@@ -1,7 +1,7 @@
 import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Card, Container } from "react-bootstrap";
 
 const LoginPage = () => {
   return (
