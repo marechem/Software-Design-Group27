@@ -15,8 +15,6 @@ export default class TopNavbar extends Component {
                     <NavDropdown title="Fuel Quote" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/newForm">Start a New Form</NavDropdown.Item>
                         <NavDropdown.Item href="/quoteHistory">Fuel Quote History</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Edit Profile</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
                     
