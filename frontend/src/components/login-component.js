@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import { Form, Button, Card, Container } from "react-bootstrap";
 
 
@@ -9,6 +9,7 @@ export default class UserLogin extends Component {
         
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             username: '',
@@ -39,8 +40,8 @@ export default class UserLogin extends Component {
 
         console.log(`Success: ${userData}`);
 
-        //axios.post('http://localhost:5000/', userData)
-            //.then(res => console.log(res.data));
+        axios.post('http://localhost:5000/', userData)
+            .then(res => console.log(res.data));
 
         window.location = '/newForm';
     }
