@@ -14,8 +14,10 @@ app.use(express.json());
 
 // Routes
 const loginRouter = require("./routes/login");
+const registerRouter = require("./routes/register");
 
 app.use('/', loginRouter);
+app.use('/register', registerRouter);
 
 //This starts the server by listening on a certain port
 app.listen(port, () => {
