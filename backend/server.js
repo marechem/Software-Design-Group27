@@ -1,5 +1,6 @@
 //This is how we create our express server and we will be on port 5000
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
