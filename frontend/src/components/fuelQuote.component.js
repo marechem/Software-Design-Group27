@@ -1,22 +1,74 @@
 import React, { Component } from 'react';
 import { Form, Container, Col, Button, Card } from "react-bootstrap";
+import axios from 'axios';
 
 export default class NewFuelQuote extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onChangeGallons = this.onChangeGallons.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
+        // The remaining variables will be added once the database becomes available
+        this.state = {
+            numOfGallons: 0,
+            date: new Date()
+        }
+    }
+
+    onChangeGallons = (e) => {
+        this.setState({
+            numOfGallons: e.target.value
+        })
+    }
+
+    onChangeDate = (date) => {
+        this.setState({
+            date: date
+        })
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        const quote = {
+            numOfGallons: this.state.numOfGallons,
+            date: this.state.date
+        }
+
+        console.log(`Sucess ${quote}`);
+
+        axios.post('http://localhost:5000/newForm', quote)
+            .then(res => console.log(res.data));
+
+        window.location = '/newForm';
+    }
+
+
     render() {
         return (
             <Container className="mt-5 mb-5 pt-5">
                 <Card>
                   <Card.Body>
                     <Container>
-                        <Form>
+                        <Form onSubmit={ this.onSubmit }>
                             <Form.Row>
                             <Col xs={7}>
                                 <Form.Label>Enter the amount of Gallons needed.</Form.Label>
-                                <Form.Control type="number" placeholder="Gallons requested" required/>
+                                <Form.Control type="number"
+                                    placeholder="Gallons requested" 
+                                    required
+                                    value={this.state.numOfGallons}
+                                    onChange={this.onChangeGallons}
+                                    />
                             </Col>
                             <Col>
                                 <Form.Label>Delivery Date</Form.Label>
-                                <Form.Control type="date" />
+                                <Form.Control type="date"
+                                    valued={this.state.date}
+                                    onChange={this.onChangeDate}
+                                    />
                             </Col>
                             </Form.Row>
                             <Form.Row>

@@ -24,7 +24,7 @@ export default class QuoteHistory extends Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Test: 5</td>
+                            <td>Test: 255</td>
                             <td>1234 Main Drive</td>
                             <td>March 15 2021</td>
                             <td>$1,200.47</td>
