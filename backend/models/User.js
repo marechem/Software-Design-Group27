@@ -1,0 +1,51 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+    username: {
+        type: String,
+        minlength: 4,
+        maxlength: 50,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 8
+    },
+    fullname: {
+        type: String,
+        required: true,
+        maxlength: 50
+    },
+    addressOne: {
+        type: String,
+        required: true,
+        maxlength: 100
+    },
+    addressTwo: {
+        type: String,
+        maxlength: 100
+    },
+    city: {
+        type: String,
+        required: true,
+        maxlength: 100
+    },
+    state: {
+        type: String,
+        enum: ['CA', 'TX'],
+        required: true,
+        minlength: 2,
+        maxlength: 2
+    },
+    zipcode: {
+        type: Number,
+        min: 5,
+        max: 9,
+        required: true
+    }
+});
+
+module.exports = User = mongoose.model("users", userSchema);
