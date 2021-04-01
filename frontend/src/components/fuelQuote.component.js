@@ -37,7 +37,7 @@ export default class NewFuelQuote extends Component {
             date: this.state.date
         }
 
-        console.log(`Sucess ${quote}`);
+        console.log(`Success ${quote}`);
 
         axios.post('http://localhost:5000/newForm', quote)
             .then(res => console.log(res.data));
