@@ -13,38 +13,6 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 8
-    },
-    fullname: {
-        type: String,
-        required: true,
-        maxlength: 50
-    },
-    addressOne: {
-        type: String,
-        required: true,
-        maxlength: 100
-    },
-    addressTwo: {
-        type: String,
-        maxlength: 100
-    },
-    city: {
-        type: String,
-        required: true,
-        maxlength: 100
-    },
-    state: {
-        type: String,
-        enum: ['CA', 'TX'],
-        required: true,
-        minlength: 2,
-        maxlength: 2
-    },
-    zipcode: {
-        type: Number,
-        min: 5,
-        max: 9,
-        required: true
     }
 });
 

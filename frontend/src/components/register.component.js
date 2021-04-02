@@ -49,14 +49,21 @@ export default class RegisterPage extends Component {
               <Card>
                   <Card.Body>
                       <div className="m-4">
-                          <Form>
+                          <Form onSubmit={this.onSubmit}>
                               <Form.Group controlId="formGroupUsername">
                                   <Form.Label>Create New Username</Form.Label>
-                                  <Form.Control type="username" placeholder="Enter username" required/>
+                                  <Form.Control type="username" placeholder="Enter username" required
+                                    onChange={this.onChangeUsername}
+                                    value={this.state.username}
+                                  />
                                 </Form.Group>
                               <Form.Group controlId="formGroupPassword">
                                  <Form.Label>Create New Password</Form.Label>
-                                 <Form.Control type="password" placeholder="Enter Password" required/>
+                                 <Form.Control type="password" placeholder="Enter Password" 
+                                    required
+                                    onChange={this.onChangePassword}
+                                    value={this.state.password}
+                                  />
                                </Form.Group>
                                <Button variant="primary" type="submit">
                                  Submit
