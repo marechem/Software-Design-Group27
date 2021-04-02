@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 require('dotenv').config();
 
@@ -12,6 +13,8 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+
+
 // Database connection
 const uri = require("./config/keys").mongoURI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
@@ -19,6 +22,9 @@ mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedT
     .catch(err => console.log(err));
 
 
+// Passport middleware & config
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 // Routes
 const loginRouter = require("./routes/login");
