@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Form, Button, Card, Container } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../actions/authActions";
+import classnames from "classnames";
 
-export default class RegisterPage extends Component {
+class RegisterPage extends Component {
     constructor(props) {
         super(props);
         
@@ -12,9 +17,24 @@ export default class RegisterPage extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errors: {}
         }
     } 
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/newForm");
+        }
+    }
 
     onChangeUsername = (e) => {
         this.setState({
@@ -36,6 +56,8 @@ export default class RegisterPage extends Component {
             password: this.state.password
         }
 
+        this.props.registerUser(userData, this.props.history);
+
         console.log(`Success: ${userData}`);
 
         axios.post('http://localhost:5000/register', userData)
@@ -43,7 +65,9 @@ export default class RegisterPage extends Component {
 
         window.location = '/';
     }
+
     render() {
+        const { errors } = this.state;
         return (
             <Container className="mt-5 pt-5">
               <Card>
@@ -55,7 +79,12 @@ export default class RegisterPage extends Component {
                                   <Form.Control type="username" placeholder="Enter username" required
                                     onChange={this.onChangeUsername}
                                     value={this.state.username}
+                                    errors={errors.username}
+                                    className={classnames("", {
+                                        invalid: errors.username
+                                    })}
                                   />
+                                  <span className="red-text">{errors.username}</span>
                                 </Form.Group>
                               <Form.Group controlId="formGroupPassword">
                                  <Form.Label>Create New Password</Form.Label>
@@ -63,7 +92,12 @@ export default class RegisterPage extends Component {
                                     required
                                     onChange={this.onChangePassword}
                                     value={this.state.password}
+                                    errors={errors.password}
+                                    className={classnames("", {
+                                        invalid: errors.password
+                                    })}
                                   />
+                                  <span className="red-text">{errors.password}</span>
                                </Form.Group>
                                <Button variant="primary" type="submit">
                                  Submit
@@ -76,3 +110,19 @@ export default class RegisterPage extends Component {
         )
     }
 }
+
+RegisterPage.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { registerUser }
+) (withRouter(RegisterPage));

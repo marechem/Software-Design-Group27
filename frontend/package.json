@@ -10,8 +10,10 @@
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
     "concurrently": "^6.0.0",
+    "is-empty": "^1.2.0",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.5.2",
     "react-datepicker": "^3.6.0",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -29,7 +31,7 @@
     "eject": "react-scripts eject",
     "dev": "concurrently \"npm run server\" \"npm run start\""
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "localhost:5000/",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Form, Container, Col, Button, Card } from "react-bootstrap";
 import axios from 'axios';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/authActions";
 
-export default class NewFuelQuote extends Component {
+class NewFuelQuote extends Component {
     constructor(props) {
         super(props);
 
@@ -16,6 +19,11 @@ export default class NewFuelQuote extends Component {
             date: new Date()
         }
     }
+
+    onLogoutClick = (e) => {
+        e.preventDefault();
+        this.props.logoutUser();
+    };
 
     onChangeGallons = (e) => {
         this.setState({
@@ -104,3 +112,17 @@ export default class NewFuelQuote extends Component {
         )
     } 
 }
+
+NewFuelQuote.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(
+    mapStateToProps,
+    { logoutUser }
+) (NewFuelQuote); 
