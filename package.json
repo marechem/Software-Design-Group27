@@ -1,8 +1,26 @@
 {
-    "jest": {
-    "testEnvironment": "node"
-  },
+  "name": "Software-Design-Group27",
+  "version": "1.0.0",
+  "description": "Software Design Project with multiple assignments",
+  "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon backend/server.js",
+    "client": "cd frontend && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerry-lopez/Software-Design-Group27.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerry-lopez/Software-Design-Group27/issues"
+  },
+  "homepage": "https://github.com/jerry-lopez/Software-Design-Group27#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0"
   }
 }
