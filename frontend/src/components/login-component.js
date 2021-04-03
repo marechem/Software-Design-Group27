@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Form, Button, Card, Container } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/authActions";
+import classnames from "classnames";
 
-
-export default class UserLogin extends Component {
+class UserLogin extends Component {
     constructor(props) {
         super(props);
         
@@ -13,11 +16,29 @@ export default class UserLogin extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errors: {}
         }
     }
 
-    
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/newForm");
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push("/newForm"); // push user fuel quote component
+        }
+
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
     onChangeUsername = (e) => {
         this.setState({
             username: e.target.value
@@ -38,6 +59,8 @@ export default class UserLogin extends Component {
             password: this.state.password
         }
 
+        this.props.loginUser(userData);
+
         console.log(`Success: ${userData}`);
 
         axios.post('http://localhost:5000/', userData)
@@ -47,6 +70,7 @@ export default class UserLogin extends Component {
     }
 
     render() {
+        const { errors } = this.state;
         return(
             <Container className="mt-5 pt-5">
                 <Card>
@@ -59,7 +83,12 @@ export default class UserLogin extends Component {
                                 required
                                 onChange={this.onChangeUsername}
                                 value={this.state.username}
+                                error={errors.username}
+                                className={classnames("", {
+                                    invalid: errors.username || errors.usernamenotfound
+                                })}
                             />
+                            <span className="red-text">{errors.username}{errors.usernamenotfound}</span>
                             <Form.Text className="text-muted">
                             Please enter your unique username.
                             </Form.Text>
@@ -71,7 +100,12 @@ export default class UserLogin extends Component {
                                 required
                                 onChange={this.onChangePassword}
                                 value={this.state.password}
+                                error={errors.password}
+                                className={classnames("", {
+                                    invalid: errors.password || errors.passwordincorrect
+                                })}
                             />
+                            <span className="red-text">{errors.password}{errors.passwordincorrect}</span>
                         </Form.Group>
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <Button variant="primary" type="submit">
@@ -91,3 +125,19 @@ export default class UserLogin extends Component {
         )
     }
 }
+
+UserLogin.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { loginUser }
+) (UserLogin);
