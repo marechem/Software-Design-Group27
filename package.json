@@ -1,8 +1,0 @@
-{
-    "jest": {
-    "testEnvironment": "node"
-  },
-  "scripts": {
-    "test": "jest --coverage"
-  }
-}
