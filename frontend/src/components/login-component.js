@@ -65,8 +65,6 @@ class UserLogin extends Component {
 
         axios.post('http://localhost:5000/', userData)
             .then(res => console.log(res.data));
-
-        window.location = '/newForm';
     }
 
     render() {
